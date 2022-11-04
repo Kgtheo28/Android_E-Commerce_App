@@ -7,6 +7,7 @@ import android.util.Log
 import com.example.firebaseproducttester.Utils.Constants
 import com.example.firebaseproducttester.activities.LoginActivity
 import com.example.firebaseproducttester.activities.RegisterActivity
+import com.example.firebaseproducttester.activities.UserProfileActivity
 import com.example.firebaseproducttester.models.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -74,6 +75,34 @@ class FirestoreClass {
                 }
 
             }
+            }
+    }
+
+    fun updateUserprofileData(activity: Activity, userHashMap: HashMap<String, Any>) {
+
+        mFirestore.collection(Constants.USERS)
+            .document(getCurrentUserID())
+            .update(userHashMap)
+            .addOnSuccessListener {
+                when (activity) {
+                    is UserProfileActivity -> {
+                        activity.userProfileUpdateSuccess()
+                    }
+                }
+
+            }
+            .addOnFailureListener { e->
+                when (activity) {
+                    is UserProfileActivity -> {
+                        activity.hideProgressDialog()
+                    }
+                }
+
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "Error while updating the user details.",
+                    e
+                )
             }
     }
 }

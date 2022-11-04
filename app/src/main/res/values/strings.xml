@@ -40,6 +40,7 @@
     <string name="err_msg_password_and_confirm_password_mismatch">Password and Confirmation Password Mismatch</string>
     <string name="err_msg_agree_terms_and_condition">Please agree to the Terms and Conditions.</string>
     <string name="register_successful">you have successfully registered </string>
+    <string name="err_msg_mobile_number">Please Enter mobile number</string>
 
     <string name="please_wait">Please Wait</string>
 
@@ -54,4 +55,9 @@
     <string name="rb_lbl_male">MALE</string>
     <string name="rb_lbl_female">FEMALE</string>
     <string name="btn_lbl_save">SAVE</string>
+
+    <string name="read_storage_permission_denied">Ooops, you just denied the permission for storage.</string>
+    <string name="image_selection_failed">Image selection failed</string>
+
+    <string name="msg_profile_update_success">You profile has been updated successfully</string>
 </resources>
