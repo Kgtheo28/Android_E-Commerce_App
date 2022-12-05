@@ -1,4 +1,4 @@
-package com.example.firebaseproducttester.activities
+package com.example.firebaseproducttester.ui.activities.activities
 
 import android.content.Intent
 import android.graphics.Typeface
@@ -22,7 +22,7 @@ class SplashActivity : AppCompatActivity() {
 
         //Go to the next page after delay
         Handler().postDelayed({
-            val mainIntent = Intent(this@SplashActivity, LoginActivity::class.java)
+            val mainIntent = Intent(this@SplashActivity, DashboardActivity::class.java)
             this@SplashActivity.startActivity(mainIntent)
             this@SplashActivity.finish()
         }, 4000)

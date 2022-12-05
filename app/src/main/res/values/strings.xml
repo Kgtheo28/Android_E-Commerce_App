@@ -50,7 +50,8 @@
 
     <string name="email_sent_sucess">"Email sent successfully to reset your password</string>
 
-    <string name="title_complete_profile">PROFILE</string>
+    <string name="title_complete_profile">Complete Profile</string>
+    <string name="title_edit_profile">Edit Profile</string>
     <string name="et_hint_mobile_number">Mobile Number</string>
     <string name="rb_lbl_male">MALE</string>
     <string name="rb_lbl_female">FEMALE</string>
@@ -60,4 +61,30 @@
     <string name="image_selection_failed">Image selection failed</string>
 
     <string name="msg_profile_update_success">You profile has been updated successfully</string>
+    <!--- <string name="title_activity_dashboard">DashboardActivity</string> -->
+    <string name="title_products">Products</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_orders">Orders</string>
+
+    <string name="please_click_back_again_to_exit">Please click back again to exit</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_settings">Settings</string>
+    <string name="lbl_edit">Edit</string>
+    <string name="lbl_addresses">Addresses</string>
+    <string name="btn_lbl_logout">Logout</string>
+
+    <string name="product_load_failed">you have failed in oading the product details</string>
+
+    <string name="banking_card">banking Card</string>
+    <string name="shopping_cart">Cart</string>
+    <string name="messages">Messages</string>
+    <string name="wish_list">Wish list</string>
+    <string name="quick_exit">Exit</string>
+
+    <string name="john">John</string>
+    <string name="jane">Jane</string>
+    <string name="doe">Doe</string>
+    <string name="phone_number">012 345 6789</string>
+    <string name="address">1234 Area, City, Code</string>
+
 </resources>

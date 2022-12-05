@@ -1,13 +1,10 @@
-package com.example.firebaseproducttester.activities
+package com.example.firebaseproducttester.ui.activities.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Log
 import android.view.View
 import android.view.WindowManager
-import android.widget.TextView
 import com.example.firebaseproducttester.R
 import com.example.firebaseproducttester.Utils.Constants
 import com.example.firebaseproducttester.databinding.ActivityLoginBinding
@@ -40,21 +37,18 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
         binding.tvRegister.setOnClickListener(this)
 
 
+
     }
 
     fun userLoggedInSuccess(user: User) {
         hideProgressDialog()
-
-        Log.i("First name; ", user.firstName)
-        Log.i("Last name; ", user.lastName)
-        Log.i("Email; ", user.email)
 
         if (user.profileCompleted == 0) {
             val intent = Intent(this@LoginActivity, UserProfileActivity::class.java)
             intent.putExtra(Constants.EXTRA_USER_DETAILS, user)
             startActivity(intent)
         } else {
-            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+            startActivity(Intent(this@LoginActivity, DashboardActivity::class.java))
         }
         finish()
     }

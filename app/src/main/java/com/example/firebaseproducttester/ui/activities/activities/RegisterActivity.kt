@@ -1,7 +1,5 @@
-package com.example.firebaseproducttester.activities
+package com.example.firebaseproducttester.ui.activities.activities
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.WindowManager
@@ -15,7 +13,7 @@ import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
-@Suppress("DEPRECATION")
+
 class RegisterActivity : BaseActivity() {
 
     private lateinit var binding: ActivityRegisterBinding

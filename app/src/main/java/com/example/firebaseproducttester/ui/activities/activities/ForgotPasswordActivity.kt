@@ -1,12 +1,9 @@
-package com.example.firebaseproducttester.activities
+package com.example.firebaseproducttester.ui.activities.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.TextUtils
 import android.widget.Toast
 import com.example.firebaseproducttester.R
 import com.example.firebaseproducttester.databinding.ActivityForgotPasswordBinding
-import com.example.firebaseproducttester.databinding.ActivityRegisterBinding
 import com.google.firebase.auth.FirebaseAuth
 
 class ForgotPasswordActivity : BaseActivity() {

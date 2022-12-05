@@ -1,4 +1,4 @@
-package com.example.firebaseproducttester.activities
+package com.example.firebaseproducttester.ui.activities.activities
 
 import android.app.Activity
 import android.content.Intent
@@ -23,8 +23,9 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
 
     private lateinit var binding: ActivityUserProfileBinding
 
-    private var mUserDetails: User = User()
-
+    private lateinit var mUserDetails: User
+    private var mSelectedImageFileUri: Uri? = null
+    private var mUserProfileImageURL: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,18 +38,47 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
             mUserDetails = intent.getParcelableExtra(Constants.EXTRA_USER_DETAILS)!!
         }
 
+        if(mUserDetails.profileCompleted == 0) {
+            binding.tvTitle.text = resources.getString(R.string.title_complete_profile)
+
+            binding.etFirstName.isEnabled = false
+            binding.etFirstName.setText(mUserDetails.firstName)
+
+            binding.etLastName.isEnabled = false
+            binding.etLastName.setText(mUserDetails.lastName)
+
+            binding.etEmail.isEnabled = false
+            binding.etEmail.setText(mUserDetails.email)
+        } else{
+            binding.tvTitle.text = resources.getString(R.string.title_edit_profile)
+            GlideLoader(this@UserProfileActivity).loaduserPicture(mUserDetails.image, binding.ivUserPhoto)
+            binding.etFirstName.setText(mUserDetails.firstName)
+            binding.etLastName.setText(mUserDetails.lastName)
+
+            if (mUserDetails.mobile != 0L){
+                binding.etMobileNumber.setText(mUserDetails.mobile.toString())
+            }
+            if (mUserDetails.gender == Constants.MALE) {
+                binding.rbMale.isChecked = true
+            } else {
+                binding.rbMale.isChecked = true
+            }
+        }
+
+
         binding.etFirstName.isEnabled = false
         binding.etFirstName.setText(mUserDetails.firstName)
 
         binding.etLastName.isEnabled = false
-        binding.etLastName.setText(mUserDetails.firstName)
+        binding.etLastName.setText(mUserDetails.lastName)
 
         binding.etEmail.isEnabled = false
-        binding.etEmail.setText(mUserDetails.firstName)
+        binding.etEmail.setText(mUserDetails.email)
 
         binding.ivUserPhoto.setOnClickListener(this@UserProfileActivity)
         binding.btnSubmit.setOnClickListener(this@UserProfileActivity)
     }
+
 
     override fun onClick(v: View?) {
         if (v != null) {
@@ -71,28 +101,42 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
                 }
 
                 R.id.btn_submit -> {
-                    if(validateUserProfileDetails()){
-                        val userHashMap = HashMap<String, Any>()
+                   if(validateUserProfileDetails()){
 
-                        val mobileNumber = binding.etMobileNumber.text.toString().trim{ it <= ' ' }
+                       showProgressDialog(resources.getString(R.string.please_wait))
 
-                        val gender = if (binding.rbMale.isChecked) {
-                            Constants.MALE
-                        } else {
-                            Constants.FEMALE
-                        }
-                        if (mobileNumber.isNotEmpty()) {
-                            userHashMap[Constants.MOBILE] = mobileNumber.toLong()
-                        }
-                        userHashMap[Constants.GENDER] = gender
-
-                        showProgressDialog(resources.getString(R.string.please_wait))
-
-                        FirestoreClass().updateUserprofileData(this, userHashMap)
+                       if(mSelectedImageFileUri != null)
+                       FirestoreClass().uploadImageToCloudStorage(this, mSelectedImageFileUri)
+                       else{
+                           updateUserProfileDetails()
+                       }
                     }
                 }
             }
         }
+    }
+
+    private fun updateUserProfileDetails(){
+        val userHashMap = HashMap<String, Any>()
+
+        val mobileNumber = binding.etMobileNumber.text.toString().trim{ it <= ' ' }
+
+        val gender = if (binding.rbMale.isChecked) {
+            Constants.MALE
+        } else {
+            Constants.FEMALE
+        }
+        if (mUserProfileImageURL.isNotEmpty()) {
+            userHashMap[Constants.IMAGE] = mUserProfileImageURL
+        }
+        if (mobileNumber.isNotEmpty()) {
+            userHashMap[Constants.MOBILE] = mobileNumber.toLong()
+        }
+        userHashMap[Constants.GENDER] = gender
+
+        userHashMap[Constants.COMPLETED_PROFILE] = 1
+
+        FirestoreClass().updateUserprofileData(this, userHashMap)
     }
 
     fun userProfileUpdateSuccess() {
@@ -132,10 +176,10 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
             if (requestCode == Constants.PICK_IMAGE_REQUEST_CODE) {
                 if (data != null) {
                     try {
-                        val selectedImageFileUri = data.data!!
+                        mSelectedImageFileUri = data.data!!
 
                         //binding.ivUserPhoto.setImageURI(Uri.parse(selectedImageFileUri.toString()))
-                        GlideLoader(this).loaduserPicture(selectedImageFileUri, binding.ivUserPhoto)
+                        GlideLoader(this).loaduserPicture(mSelectedImageFileUri!!, binding.ivUserPhoto)
                     } catch (e: IOException) {
                         e.printStackTrace()
                         Toast.makeText(
@@ -159,6 +203,11 @@ class UserProfileActivity : BaseActivity(), View.OnClickListener {
                 true
             }
         }
+    }
+
+    fun imageUploadSuccess(imageURL: String) {
+        mUserProfileImageURL = imageURL
+        updateUserProfileDetails()
     }
 
 }
