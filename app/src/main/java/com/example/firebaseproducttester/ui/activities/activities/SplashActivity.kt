@@ -22,7 +22,7 @@ class SplashActivity : AppCompatActivity() {
 
         //Go to the next page after delay
         Handler().postDelayed({
-            val mainIntent = Intent(this@SplashActivity, DashboardActivity::class.java)
+            val mainIntent = Intent(this@SplashActivity, LoginActivity::class.java)
             this@SplashActivity.startActivity(mainIntent)
             this@SplashActivity.finish()
         }, 4000)
