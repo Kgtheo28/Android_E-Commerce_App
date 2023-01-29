@@ -15,6 +15,29 @@
         android:theme="@style/Theme.FirebaseProductTester"
         tools:targetApi="31">
         <activity
+            android:name=".ui.activities.activities.FetchingDataActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.activities.activities.AddingProductsActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.activities.activities.NavigationDrawerActivity"
+            android:exported="false"
+            android:label="@string/title_activity_navigation_drawer"
+            android:theme="@style/Theme.FirebaseProductTester.NoActionBar">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".ui.activities.activities.UserProfileDetailActivity"
             android:exported="false">
             <meta-data

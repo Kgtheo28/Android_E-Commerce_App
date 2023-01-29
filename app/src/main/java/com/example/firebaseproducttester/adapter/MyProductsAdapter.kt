@@ -21,6 +21,7 @@ class MyProductsAdapter(
             .inflate(R.layout.shopping_cart,parent,false))
     }
 
+
     override fun onBindViewHolder(holder: MyProductsViewHolder, position: Int) {
         val ProductsModel = list[position]
         Glide.with(context)
@@ -40,7 +41,6 @@ class MyProductsAdapter(
         var txtName:TextView = itemView.findViewById(R.id.textView_cart_title)
         var txtDescription:TextView =itemView.findViewById(R.id.textView_cart_description)
         var txtPrice:TextView = itemView.findViewById(R.id.textView_cart_price)
-
 
     }
 

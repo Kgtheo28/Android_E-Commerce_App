@@ -25,7 +25,7 @@ class SplashActivity : AppCompatActivity() {
             val mainIntent = Intent(this@SplashActivity, LoginActivity::class.java)
             this@SplashActivity.startActivity(mainIntent)
             this@SplashActivity.finish()
-        }, 4000)
+        }, 1000)
 
         val typeface: Typeface = Typeface.createFromAsset(assets, "robor_medium.ttf")
         findViewById<TextView>(R.id.tv_app_name).typeface = typeface

@@ -1,5 +1,6 @@
 package com.example.firebaseproducttester.ui.activities.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.WindowManager
@@ -12,11 +13,15 @@ import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ktx.database
 
 
 class RegisterActivity : BaseActivity() {
 
     private lateinit var binding: ActivityRegisterBinding
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +42,7 @@ class RegisterActivity : BaseActivity() {
         binding.btnRegister.setOnClickListener {
             registerUser()
         }
+
 
     }
 
@@ -108,8 +114,6 @@ class RegisterActivity : BaseActivity() {
 
                             FirestoreClass().registerUser(this@RegisterActivity, user)
 
-
-
                             //FirebaseAuth.getInstance().signOut()
                             //finish()
 
@@ -131,6 +135,8 @@ class RegisterActivity : BaseActivity() {
             resources.getString(R.string.register_successful),
             Toast.LENGTH_SHORT
         ).show()
+        startActivity(Intent(this@RegisterActivity, NavigationDrawerActivity::class.java))
+        finish()
     }
 
 

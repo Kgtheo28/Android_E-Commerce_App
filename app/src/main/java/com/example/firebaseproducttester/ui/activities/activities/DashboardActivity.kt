@@ -34,7 +34,7 @@ class DashboardActivity : BaseActivity() {
         val navController = findNavController(R.id.nav_host_fragment_activity_dashboard)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        val appBarConfiguration = AppBarConfiguration(
+        val appBarConfiguration     = AppBarConfiguration(
             setOf(
                 R.id.navigation_dashboard, R.id.navigation_products, R.id.navigation_orders
             )
@@ -45,6 +45,7 @@ class DashboardActivity : BaseActivity() {
 
     }
 
+    @Deprecated("Deprecated in Java", ReplaceWith("doublebackToExit()"))
     override fun onBackPressed() {
         doublebackToExit()
     }

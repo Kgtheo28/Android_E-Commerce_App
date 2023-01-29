@@ -14,7 +14,7 @@ import com.example.firebaseproducttester.firestore.FirestoreClass
 import com.example.firebaseproducttester.models.User
 import com.google.firebase.auth.FirebaseAuth
 
-class UserProfileDetailActivity : BaseActivity(), View.OnClickListener {
+class UserProfileDetailActivity : BaseActivity() {
 
     private lateinit var binding: ActivityUserProfileDetailBinding
     private lateinit var mUserDetails: User
@@ -26,10 +26,17 @@ class UserProfileDetailActivity : BaseActivity(), View.OnClickListener {
         setContentView(view)
 
 
+        binding.imageView50.setOnClickListener{
+            val intent = Intent(this@UserProfileDetailActivity, SettingsActivity::class.java)
+            startActivity(intent)
+        }
 
+        getUserDetails()
     }
 
-    private fun getuserDetails(){
+
+
+    private fun getUserDetails(){
         showProgressDialog(resources.getString(R.string.please_wait))
         FirestoreClass().getUserDetails(this)
     }
@@ -49,20 +56,8 @@ class UserProfileDetailActivity : BaseActivity(), View.OnClickListener {
 
     override fun onResume() {
         super.onResume()
-        getuserDetails()
+        getUserDetails()
     }
 
-    override fun onClick(v: View?) {
-        if(v != null){
-            when(v.id) {
-                R.id.imageView50 -> {
-                    FirebaseAuth.getInstance().signOut()
-                    val intent = Intent(this@UserProfileDetailActivity, SettingsActivity::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                    startActivity(intent)
-                    finish()
-                }
-            }
-        }
-    }
+
 }

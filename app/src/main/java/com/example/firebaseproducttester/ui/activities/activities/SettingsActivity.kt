@@ -26,6 +26,7 @@ class SettingsActivity : BaseActivity(), View.OnClickListener {
 
         binding.tvEdit.setOnClickListener(this)
         binding.btnLogout.setOnClickListener(this)
+        setupActionBar()
     }
 
     private fun setupActionBar() {

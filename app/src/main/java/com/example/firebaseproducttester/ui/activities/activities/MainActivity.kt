@@ -71,11 +71,15 @@ class MainActivity : AppCompatActivity(), ProductsLoadListener {
 
     }
 
-
     override fun onProductsLoadSuccess(productModelList: List<ProductsModel>) {
+        TODO("Not yet implemented")
+    }
+
+
+    /* override fun onProductsLoadSuccess(productModelList: List<ProductsModel>) {
         val adapter = MyProductsAdapter(this, productModelList as ArrayList<ProductsModel>)
         binding.recyclerProducts.adapter = adapter
-    }
+    } */
 
     override fun onProductsLoadFailed(message: String) {
         println("you have failed to uploaded the product details")

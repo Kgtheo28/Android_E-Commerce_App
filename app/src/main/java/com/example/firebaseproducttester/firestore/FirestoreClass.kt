@@ -8,6 +8,7 @@ import android.util.Log
 import com.example.firebaseproducttester.Utils.Constants
 import com.example.firebaseproducttester.models.User
 import com.example.firebaseproducttester.ui.activities.activities.*
+import com.example.firebaseproducttester.ui.activities.activities.ui.slideshow.SlideshowFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
